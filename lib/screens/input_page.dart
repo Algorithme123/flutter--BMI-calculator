@@ -1,3 +1,4 @@
+import 'package:bmi/screens/resultPage.dart';
 import 'package:flutter/material.dart';
 import '../components/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -181,9 +182,16 @@ class _InputPageState extends State<InputPage> {
           Container(
             margin: EdgeInsets.symmetric(horizontal: 10.0),
             child: Center(
-              child: Text(
-                'CALCULER BMI',
-                style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
+              child: TextButton(
+                onPressed: () {
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ResultPage()),
+                  );
+                },
+                child: const Text('CALCUL BMI!',
+                  style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),),
               ),
             ),
             height: 80.0,

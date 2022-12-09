@@ -1,3 +1,4 @@
+import 'package:bmi/screens/resultPage.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi/screens/input_page.dart';
 
@@ -12,7 +13,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
           primaryColor: const Color(0xFF0A0E21),
           scaffoldBackgroundColor: const Color(0xFF0A0E21)),
-      home: InputPage(),
+      // home: InputPage(),
+
+      initialRoute: '/',
+      routes:{
+        '/' : (context)=> InputPage(),
+        '/resultat' : (context)=> ResultPage(),
+      }
     );
+
   }
 }
