@@ -1,4 +1,5 @@
-import 'package:bmi/screens/resultPage.dart';
+import 'package:bmi/calculator_brain.dart';
+import 'package:bmi/screens/result_page.dart';
 import 'package:flutter/material.dart';
 import '../components/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,7 +22,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
+        title: const Text('BMI CALCULATOR'),
       ),
       body: Column(
         children: [
@@ -57,17 +58,17 @@ class _InputPageState extends State<InputPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(ma_taille.toString(), style: kMyTextStyle),
-                        Text('cm'),
+                        const Text('cm'),
                       ],
                     ),
                   ),
                 ),
                 SliderTheme(
                   data: SliderTheme.of(context).copyWith(
-                    thumbColor: Color(0xFFEB1555),
+                    thumbColor: const Color(0xFFEB1555),
                     activeTrackColor: Colors.white,
-                    inactiveTrackColor: Color(0xFF8D8E98),
-                    overlayColor: Color(0x29EB1555),
+                    inactiveTrackColor: const Color(0xFF8D8E98),
+                    overlayColor: const Color(0x29EB1555),
                     thumbShape:
                     const RoundSliderThumbShape(enabledThumbRadius: 15.0),
                     overlayShape:
@@ -94,7 +95,7 @@ class _InputPageState extends State<InputPage> {
                 couleur: Colors.teal,
                 containerChild: Column(
                   children: [
-                    Text(
+                    const Text(
                       'Poids',
                       style: kMyTextStyle,
                     ),
@@ -106,7 +107,7 @@ class _InputPageState extends State<InputPage> {
                           mon_poids.toString(),
                           style: kMyTextStyle,
                         ),
-                        Text('KG')
+                        const Text('KG')
                       ],
                     ),
                     Row(
@@ -138,7 +139,7 @@ class _InputPageState extends State<InputPage> {
                 couleur: Colors.teal,
                 containerChild: Column(
                   children: [
-                    Text(
+                    const Text(
                       'Age',
                       style: kMyTextStyle,
                     ),
@@ -150,7 +151,7 @@ class _InputPageState extends State<InputPage> {
                           mon_age.toString(),
                           style: kMyTextStyle,
                         ),
-                        Text('ans')
+                        const Text('ans')
                       ],
                     ),
                     Row(
@@ -180,23 +181,26 @@ class _InputPageState extends State<InputPage> {
             ],
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0),
-            child: Center(
-              child: TextButton(
-                onPressed: () {
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ResultPage()),
-                  );
-                },
-                child: const Text('CALCUL BMI!',
-                  style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),),
-              ),
-            ),
+            margin: const EdgeInsets.symmetric(horizontal: 10.0),
             height: 80.0,
             width: double.infinity,
-            color: Color(0xFFEB1555),
+            color: const Color(0xFFEB1555),
+            child: TextButton(
+              onPressed: () {
+                CalculatorBrain cal = CalculatorBrain(taille: ma_taille, poids: mon_poids);
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultPage(
+                    mon_bmi: cal.calculateBMI(),
+                    mon_resultat: cal.getResult(),
+                    interpretation: cal.getInterpretation()
+                )));
+              },
+              child: const Center(
+                child: Text(
+                  'CALCULER BMI',
+                  style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
           ),
         ],
       ),
