@@ -5,3 +5,4 @@
 
 
 # Calcul du BMI
+![image](https://user-images.githubusercontent.com/101357738/207412386-dddf97bc-7f84-4fcc-a06d-510a7ad6cbf4.png)
